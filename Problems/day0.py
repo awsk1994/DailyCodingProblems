@@ -22,10 +22,10 @@ def solNaiveChild(n, steps, curr_combo, combos):
 		combos.append(curr_combo)
 	else:
 		for step in range(1, steps + 1):
-			if n >= step:
-				combos = solNaiveChild(n-step, steps, curr_combo + [step], combos)
-	return combos
+			added_combo = curr_combo + [step]
+			combos = solNaiveChild(n - step, steps, added_combo, combos)
 
+	return combos
 '''
 If you look at the solution, you will realize that it's basically fibonacci sequence:
 N = 1 => [1]						=> 1
