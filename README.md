@@ -1,2 +1,2 @@
 # DailyCodingProblems
-Self-implemented python solution for https://dailycodingproblem.com every day.
+My own Python Answers for https://dailycodingproblem.com every day.
