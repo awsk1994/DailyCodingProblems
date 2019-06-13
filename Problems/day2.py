@@ -6,43 +6,45 @@ For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120
 Follow-up: what if you can't use division?
 '''
 
-
-def prod_lst(lst, reverse = False):
-	r = range(len(lst))
-	if reverse:
-		r = reversed(r)	# or r = range(len(lst)-1, -1, -1)
-
-	product = 1
+def get_prefix_prod(lst):
 	products = [0] * len(lst)
+	for i in range(len(lst)):
+		if i == 0:
+			products[i] = lst[i]
+		else:
+			products[i] = products[i-1] * lst[i]
+	return products
 
-	for i in r:
-		product *= lst[i]
-		products[i] = product
-
+def get_suffix_prod(lst):
+	products = [0] * len(lst)
+	for i in reversed(range(len(lst))):
+		if i == len(lst)-1:
+			products[i] = lst[i]
+		else:
+			products[i] = products[i+1] * lst[i]
 	return products
 
 # O(n)
-def opt_sol(lst):
-	LR = prod_lst(lst)
-	RL = prod_lst(lst, True)
+def products(lst):
+	LR = get_prefix_prod(lst)
+	RL = get_suffix_prod(lst)
 
-	ans = [None] * len(lst)
+	ans = []
 	for i in range(len(lst)):
-		l, r = 1, 1
-		if i - 1 >= 0:
-			l = LR[i-1]
-		if i + 1 < len(lst):
-			r = RL[i+1]
-		ans[i] = l * r
+		if i == 0:				# head
+			ans.append(RL[i+1])
+		elif i == len(lst) - 1:	# tail
+			ans.append(LR[i-1])
+		else:					# middle elems
+			ans.append(LR[i-1] * RL[i+1])
 	return ans
 
 def main():
 	lst = [1,2,3,4,5]
 	ans = [120, 60, 40, 30, 24]
 
-	my_ans = opt_sol(lst)
+	my_ans = products(lst)
 	print("my_ans: {}\t| Same as ans? {}".format(my_ans, my_ans == ans))
 
 if __name__ == '__main__':
 	main()
-	
