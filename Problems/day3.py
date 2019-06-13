@@ -32,8 +32,8 @@ def serialize(n):
 def serialize_r(n):
 	if n is None:
 		return None
-	return [serialize_r(n.left), n.val, serialize_r(n.right)]	# todo: can pass back as a string, thus, removing the parent serialize method.
-
+	return str([serialize_r(n.left), n.val, serialize_r(n.right)])
+	
 # deserialize: O(n)
 def deserialize(string):
 	arr = ast.literal_eval(string) # O(n)
