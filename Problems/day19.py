@@ -64,8 +64,8 @@ def main():
 	N = 5
 	K = 3
 	cost = [[10, 5, 1], [10, 5, 1], [10, 5, 1], [10, 5, 1], [10, 5, 1]]	# cost[y][x], cost[N][K]
-	print(Brute(N, K, cost).min_cost(None, None))
-	print(lowest_cost(cost))
+	print("Brute sol={}".format(Brute(N, K, cost).min_cost(None, None)))
+	print("Optimized sol={}".format(lowest_cost(cost)))
 
 if __name__ == "__main__":
 	main()
